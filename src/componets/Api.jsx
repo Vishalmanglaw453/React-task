@@ -1,7 +1,8 @@
 import React from "react";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+
 const Api = () => {
-  const [dogImage, setDogImage] = useState(null);
+  const [photo, setPhoto] = useState([]);
 
   useEffect(() => {
     fetch("https://dog.ceo/api/breeds/image/random/50")
@@ -10,11 +11,21 @@ const Api = () => {
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
   return (
-    <div className="App">
-      {dogImage &&
-        dogImage.map((dog) => (
-          <img width={"200px"} height={"200px"} src={dog}></img>
-        ))}
+    <div>
+      {
+        <div className=" d-flex flex-wrap">
+          {photo &&
+            photo.map((productImages) => (
+              <div style={{ margin: "10px", textAlign: "center" }}>
+                <img
+                  src={productImages}
+                  alt="product-image"
+                  style={{ width: "150px", height: "150px" }}
+                />
+              </div>
+            ))}
+        </div>
+      }
     </div>
   );
 };
